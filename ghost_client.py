@@ -10,19 +10,50 @@ import json
 import requests
 
 
-def create_user(link, email, password):
+def sign_in(link, email, password):
     """Creates a new user."""
     payload = {
         "email": email,
         "password": password,
     }
-    return requests.post(f"{link}/users/create", json=payload).json()
+    return requests.post(f"{link}/sign-in", json=payload).json()
+
+
+def log_in(link, email, password):
+    """Creates a new user."""
+    payload = {
+        "email": email,
+        "password": password,
+    }
+    return requests.post(f"{link}/log-in", json=payload).json()
+
+
+def open_endpoint(link, jwt_file=None):
+    return requests.post(f"{link}/examples/open-endpoint").json()
+
+
+def closed_endpoint(link, jwt_file=None):
+    if jwt_file:
+        with open(jwt_file, "r") as jwt_raw:
+            jwt_string = jwt_raw.read().strip()
+        headers = {
+            "Authorization": f"Bearer {jwt_string}"
+        }
+    else:
+        headers = {}
+    return requests.post(
+        f"{link}/examples/closed-endpoint",
+        headers=headers
+    ).json()
 
 
 if __name__ == "__main__":
     LINK = "http://localhost:3000"
     COMMANDS = {
-        "create_user": create_user,
+        "sign_in":         sign_in,
+        "log_in":          log_in,
+        "open_endpoint":   open_endpoint,
+        "closed_endpoint": closed_endpoint,
     }
 
     try:

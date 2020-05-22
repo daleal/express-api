@@ -2,6 +2,7 @@ const express = require('express');
 const createError = require('http-errors');
 const logger = require('morgan');
 const routes = require('./routes');
+const currentUser = require('./middleware/currentUser');
 
 const app = express();
 
@@ -9,6 +10,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Load current user to the app state if there is one
+app.use(currentUser);
+
+// Add routers
 app.use('/', routes);
 
 // catch 404 and forward to error handler
