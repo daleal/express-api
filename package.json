@@ -1,0 +1,33 @@
+{
+  "name": "express-sequelize",
+  "version": "0.1.0",
+  "description": "Sample Express.js + Sequelize API template.",
+  "main": "index.js",
+  "author": "Daniel Leal",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "lint": "eslint ./src index.js",
+    "lint-fix": "eslint --fix ./src index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "http-errors": "^1.7.3",
+    "morgan": "^1.10.0",
+    "pg": "^8.2.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.21.10"
+  },
+  "devDependencies": {
+    "eslint": "^7.0.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "nodemon": "^2.0.4"
+  },
+  "engines": {
+    "node": "^14.2.0",
+    "yarn": "^1.22.4"
+  }
+}
