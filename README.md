@@ -23,6 +23,12 @@ Then, build the project:
 docker-compose build
 ```
 
+Don't forget to migrate the database:
+
+```
+docker-compose run web sequelize db:migrate
+```
+
 Finally, run the server:
 
 ```
