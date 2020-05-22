@@ -11,9 +11,9 @@ router.post('/sign-in', async (request, response) => {
   try {
     helpers.users.validate(request.body);
     await user.save({ fields: ['email', 'password'] });
-    response.json({ success: true, payload: user.email });
+    return response.json({ success: true, payload: user.email });
   } catch (error) {
-    response.json({ success: false, payload: error.message });
+    return response.json({ success: false, payload: error.message });
   }
 });
 
@@ -26,14 +26,14 @@ router.post('/log-in', async (request, response) => {
       throw new Error('Invalid email/password combination');
     }
     const token = helpers.jwt.generateJWToken(user.id);
-    response.json({ success: true, payload: token });
+    return response.json({ success: true, payload: token });
   } catch (error) {
-    response.json({ success: false, payload: error.message });
+    return response.json({ success: false, payload: error.message });
   }
 });
 
 router.post('/sample', requireLogIn, async (request, response) => {
-  response.json({ success: true, payload: request.currentUser });
+  return response.json({ success: true, payload: request.currentUser });
 });
 
 module.exports = router;
