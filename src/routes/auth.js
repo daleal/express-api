@@ -25,7 +25,7 @@ router.post('/log-in', async (request, response) => {
       // User credentials invalid
       throw new Error('Invalid email/password combination');
     }
-    const token = helpers.jwt.generateJWToken(user.id);
+    const token = helpers.jwt.generate(user.id);
     return response.json({ success: true, payload: token });
   } catch (error) {
     return response.json({ success: false, payload: error.message });
