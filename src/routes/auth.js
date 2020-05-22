@@ -32,8 +32,6 @@ router.post('/log-in', async (request, response) => {
   }
 });
 
-router.post('/sample', requireLogIn, async (request, response) => {
-  return response.json({ success: true, payload: request.currentUser });
-});
+router.post('/sample', requireLogIn, async (request, response) => response.json({ success: true, payload: request.currentUser }));
 
 module.exports = router;
