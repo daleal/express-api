@@ -29,7 +29,7 @@ def log_in(link, email, password):
 
 
 def open_endpoint(link, jwt_file=None):
-    return requests.post(f"{link}/examples/open-endpoint").json()
+    return requests.get(f"{link}/examples/open-endpoint").json()
 
 
 def closed_endpoint(link, jwt_file=None):
@@ -41,7 +41,7 @@ def closed_endpoint(link, jwt_file=None):
         }
     else:
         headers = {}
-    return requests.post(
+    return requests.get(
         f"{link}/examples/closed-endpoint",
         headers=headers
     ).json()

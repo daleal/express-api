@@ -11,7 +11,7 @@ router.post('/sign-in', async (request, response) => {
   try {
     helpers.users.validate(request.body);
     await user.save({ fields: ['email', 'password'] });
-    response.json({ success: true, payload: user });
+    response.json({ success: true, payload: user.email });
   } catch (error) {
     response.json({ success: false, payload: error.message });
   }
