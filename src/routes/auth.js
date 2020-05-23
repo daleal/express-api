@@ -13,7 +13,7 @@ router.post('/sign-in', async (request, response) => {
     await user.save({ fields: ['email', 'password'] });
     return response.json({ success: true, payload: user.email });
   } catch (error) {
-    return response.json({ success: false, payload: error.message });
+    return response.status(500).json({ success: false, payload: error.message });
   }
 });
 
@@ -28,7 +28,7 @@ router.post('/log-in', async (request, response) => {
     const token = helpers.jwt.generate(user.id);
     return response.json({ success: true, payload: token });
   } catch (error) {
-    return response.json({ success: false, payload: error.message });
+    return response.status(500).json({ success: false, payload: error.message });
   }
 });
 
